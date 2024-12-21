@@ -12,6 +12,7 @@ Extra=(
 	wps-office
 	hyprshot
 	wlogout
+ 	hyprland-qtutils
 )
 
 #Unnecessary packages
