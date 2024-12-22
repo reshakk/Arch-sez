@@ -2,12 +2,14 @@
 
 flatpaks=(
 	net.davidotek.pupgui2 #ProtonQt
-	com.usebottles.bottles 
-	com.github.tchx84.Flatseal
-        dev.vencord.Vesktop	
-	io.github.flattool.Warehouse
-	com.nextcloud.desktopclient.nextcloud
-	io.github.thetumultuousunicornofdarkness.cpu-x
+        com.usebottles.bottles #App from windows
+        com.github.tchx84.Flatseal #Control the settings for the app from flathub
+        dev.vencord.Vesktop #Discord with screen-sharing        
+        io.github.flattool.Warehouse #Manage all things Flatpak 
+        com.nextcloud.desktopclient.nextcloud #Self-storage
+        io.github.thetumultuousunicornofdarkness.cpu-x #Informations on CPU
+        io.missioncenter.MissionCenter #Monitor system
+        com.rabbit_company.passky #Password-manager
 )
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
