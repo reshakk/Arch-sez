@@ -13,6 +13,7 @@ Extra=(
 	hyprshot
 	wlogout
  	hyprland-qtutils
+  	xorg-xhost
 )
 
 #Unnecessary packages
