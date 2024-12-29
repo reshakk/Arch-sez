@@ -26,7 +26,7 @@ install_package() {
 		echo "$1 is already installed"
 	else
 		echo "Installing $1"
-		yay -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
+		yay -S --noconfirm --needed "$1" 2>&1 | tee -a "$LOG"
 		if yay -Q "$1" &>/dev/null; then
 			echo "$1 was installed"
 		else
