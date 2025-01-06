@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# ██▀███  ▓█████   ██████  ██░ ██  ▄▄▄       ██ ▄█▀ ██ ▄█▀
+#▓██ ▒ ██▒▓█   ▀ ▒██    ▒ ▓██░ ██▒▒████▄     ██▄█▒  ██▄█▒ 
+#▓██ ░▄█ ▒▒███   ░ ▓██▄   ▒██▀▀██░▒██  ▀█▄  ▓███▄░ ▓███▄░ 
+#▒██▀▀█▄  ▒▓█  ▄   ▒   ██▒░▓█ ░██ ░██▄▄▄▄██ ▓██ █▄ ▓██ █▄ 
+#░██▓ ▒██▒░▒████▒▒██████▒▒░▓█▒░██▓ ▓█   ▓██▒▒██▒ █▄▒██▒ █▄
+#░ ▒▓ ░▒▓░░░ ▒░ ░▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ▒▒   ▓▒█░▒ ▒▒ ▓▒▒ ▒▒ ▓▒
+#  ░▒ ░ ▒░ ░ ░  ░░ ░▒  ░ ░ ▒ ░▒░ ░  ▒   ▒▒ ░░ ░▒ ▒░░ ░▒ ▒░
+#  ░░   ░    ░   ░  ░  ░   ░  ░░ ░  ░   ▒   ░ ░░ ░ ░ ░░ ░ 
+#   ░        ░  ░      ░   ░  ░  ░      ░  ░░  ░   ░  ░   
+
 
 # Log file
 LOG="install-$(date +%d-%H%M%S).log"
@@ -42,6 +52,8 @@ install_package() {
 # Install required packages
 install_package "base-devel"
 install_package "archlinux-keyring"
+install_package "git"
+
 
 #Install yay
 if pacman -Q "yay" &> /dev/null; then
@@ -53,6 +65,7 @@ else
   	makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install yay from AUR\n"; exit 1; }
 	if pacman -Q "yay" &> /dev/null; then
 		echo "yay has been installed successfully."
+        rm -rf yay || echo "Failed to delete yay directories"
 	else
 		echo "ERROR: yay cannot be installed. Please install it manually."
 		exit 1
@@ -114,9 +127,8 @@ ask_yes_no "-Do you want to download packages for flatpak(Bottles, Cpu-x, Flatse
 printf "\n"
 ask_yes_no "-Do you want to download cups and hp-drivers?" hprinter
 printf "\n"
-ask_yes_no "-Do you want to download sddm?" sddm
+ask_yes_no "-Do you want to set dotfiles?" dotf
 printf "\n"
-
 
 chmod +x i-scripts/*
 sleep 1
@@ -134,7 +146,7 @@ execute_script "fonts.sh"
 [[ "$fish" == "Y" ]] && execute_script "fish.sh"
 [[ "$flatpaks" == "Y" ]] && execute_script "flatpak.sh"	
 [[ "$hprinter" == "Y" ]] && execute_script "printer.sh"
-[[ "$sddm" == "Y" ]] && execute_script "sddm.sh"
+[[ "$dotf" == "Y" ]] && execute_script "dotfiles.sh"
 
 clear
 
