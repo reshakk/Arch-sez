@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
 
-# ██▀███  ▓█████   ██████  ██░ ██  ▄▄▄       ██ ▄█▀ ██ ▄█▀
-#▓██ ▒ ██▒▓█   ▀ ▒██    ▒ ▓██░ ██▒▒████▄     ██▄█▒  ██▄█▒ 
-#▓██ ░▄█ ▒▒███   ░ ▓██▄   ▒██▀▀██░▒██  ▀█▄  ▓███▄░ ▓███▄░ 
-#▒██▀▀█▄  ▒▓█  ▄   ▒   ██▒░▓█ ░██ ░██▄▄▄▄██ ▓██ █▄ ▓██ █▄ 
-#░██▓ ▒██▒░▒████▒▒██████▒▒░▓█▒░██▓ ▓█   ▓██▒▒██▒ █▄▒██▒ █▄
-#░ ▒▓ ░▒▓░░░ ▒░ ░▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ▒▒   ▓▒█░▒ ▒▒ ▓▒▒ ▒▒ ▓▒
-#  ░▒ ░ ▒░ ░ ░  ░░ ░▒  ░ ░ ▒ ░▒░ ░  ▒   ▒▒ ░░ ░▒ ▒░░ ░▒ ▒░
-#  ░░   ░    ░   ░  ░  ░   ░  ░░ ░  ░   ▒   ░ ░░ ░ ░ ░░ ░ 
-#   ░        ░  ░      ░   ░  ░  ░      ░  ░░  ░   ░  ░   
+# ██▀███  ▓█████   ██████  ██░ ██  ▄▄▄       ██ ▄█▀ ██ ▄█▀
+#▓██ ▒ ██▒▓█   ▀ ▒██    ▒ ▓██░ ██▒▒████▄     ██▄█▒  ██▄█▒ 
+#▓██ ░▄█ ▒▒███   ░ ▓██▄   ▒██▀▀██░▒██  ▀█▄  ▓███▄░ ▓███▄░ 
+#▒██▀▀█▄  ▒▓█  ▄   ▒   ██▒░▓█ ░██ ░██▄▄▄▄██ ▓██ █▄ ▓██ █▄ 
+#░██▓ ▒██▒░▒████▒▒██████▒▒░▓█▒░██▓ ▓█   ▓██▒▒██▒ █▄▒██▒ █▄
+#░ ▒▓ ░▒▓░░░ ▒░ ░▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ▒▒   ▓▒█░▒ ▒▒ ▓▒▒ ▒▒ ▓▒
+#  ░▒ ░ ▒░ ░ ░  ░░ ░▒  ░ ░ ▒ ░▒░ ░  ▒   ▒▒ ░░ ░▒ ▒░░ ░▒ ▒░
+#  ░░   ░    ░   ░  ░  ░   ░  ░░ ░  ░   ▒   ░ ░░ ░ ░ ░░ ░ 
+#   ░        ░  ░      ░   ░  ░  ░      ░  ░░  ░   ░  ░   
+
+# Set some colors for output messages
+OK="$(tput setaf 2)[OK]$(tput sgr0)"
+ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
+NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
+RESET="$(tput sgr0)"
 
 
 # Log file
@@ -22,14 +29,14 @@ script_directory="i-scripts"
 
 # Check if running as root. If root, scripts will exit
 if [[ $EUID -eq 0 ]]; then
-	echo "ERROR: Don't use root privileges"
+	echo "${ERROR} ERROR: Don't use root privileges"
 	exit 1
 fi
 
 clear
 
 if pacman -Qq | grep -qw '^pipewire$'; then
-	echo "PulseAudio is installed"
+	echo "${NOTE} PulseAudio is installed"
 	PulseAudio="N"
 else
 	PulseAudio="Y"
@@ -37,13 +44,13 @@ fi
 
 install_package() {
     if pacman -Q "$1" &> /dev/null; then
-        echo "$1 is already installed."
+        echo "${NOTE} $1 is already installed."
     else
-        echo "Installing $1..."
+        echo "${INFO} Installing $1..."
         if sudo pacman -S --noconfirm "$1"; then
-            echo "$1 has been installed successfully."
+            echo "${INFO} $1 has been installed successfully."
         else
-            echo "ERROR: $1 cannot be installed. Please install it manually."
+            echo "${ERROR} ERROR: $1 cannot be installed. Please install it manually."
             exit 1
         fi
     fi
@@ -57,17 +64,17 @@ install_package "git"
 
 #Install yay
 if pacman -Q "yay" &> /dev/null; then
-	echo "yay is already installed."
+	echo "${NOTE} yay is already installed."
 else
-	echo "Installing yay..."
+	echo "${INFO} Installing yay..."
 	git clone https://aur.archlinux.org/yay.git || { printf "%s - Failed to clone yay from AUR\n"; exit 1; }
 	cd yay || { printf "%s - Failed to enter yay directory\n"; exit 1; }
   	makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install yay from AUR\n"; exit 1; }
 	if pacman -Q "yay" &> /dev/null; then
-		echo "yay has been installed successfully."
-        rm -rf yay || echo "Failed to delete yay directories"
+		echo "${INFO} yay has been installed successfully."
+        rm -rf yay || echo "${ERROR} Failed to delete yay directories"
 	else
-		echo "ERROR: yay cannot be installed. Please install it manually."
+		echo "${ERROR} ERROR: yay cannot be installed. Please install it manually."
 		exit 1
 	fi
 fi
@@ -102,10 +109,10 @@ execute_script() {
         if [[ -x "$script_path" ]]; then
             env USE_PRESET="$user_preset" "$script_path"
         else
-            echo "ERROR: Failed to make script '$script' executable."
+            echo "${ERROR} ERROR: Failed to make script '$script' executable."
         fi
     else
-        echo "ERROR: Script '$script' not found in '$script_directory'."
+        echo "${ERROR} ERROR: Script '$script' not found in '$script_directory'."
     fi
 }
 
@@ -166,3 +173,4 @@ else
     printf "\n Hyprland failed to install. Please check 01_check-time_installed.log and other files Install-Logs/ directory...\n\n"
     exit 1
 fi
+
