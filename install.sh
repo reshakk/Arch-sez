@@ -72,13 +72,6 @@ else
 	fi
 fi
 
-read -p "Do you want to use present settigns? y/n " use_preset
-
-# Use of Preset Settings
-if [[ $use_preset =~ ^[Yy]$ ]]; then
-  source ./preset.sh
-fi
-
 ask_yes_no() {
     local prompt="$1"
     local var_name="$2"
