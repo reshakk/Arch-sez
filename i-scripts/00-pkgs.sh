@@ -68,6 +68,7 @@ stnd_com=(
 	man
 	wget	
 	nmap
+ 	udisks2
 )
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
