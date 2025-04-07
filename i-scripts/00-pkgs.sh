@@ -4,6 +4,7 @@ unins=(
 	dunst
 	htop
 	dolphin
+ 	librewolf-bin
 	wofi
 )
 
@@ -51,6 +52,7 @@ main_package=(
 	waybar
 	hyprlock
 	hyprpicker
+ 	papirus-icon-theme
 )
 
 
