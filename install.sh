@@ -127,6 +127,8 @@ ask_yes_no "-Do you want to download packages for flatpak(Bottles, Cpu-x, Flatse
 printf "\n"
 ask_yes_no "-Do you want to download cups and hp-drivers?" hprinter
 printf "\n"
+ask_yes_no "-Do you want to download sddm?" sddm
+printf "\n"
 ask_yes_no "-Do you want to set dotfiles?" dotf
 printf "\n"
 
@@ -146,6 +148,7 @@ execute_script "fonts.sh"
 [[ "$fish" == "Y" ]] && execute_script "fish.sh"
 [[ "$flatpaks" == "Y" ]] && execute_script "flatpak.sh"	
 [[ "$hprinter" == "Y" ]] && execute_script "printer.sh"
+[[ "$sddm" == "Y" ]] && execute_script "sddm.sh"
 [[ "$dotf" == "Y" ]] && execute_script "dotfiles.sh"
 
 clear
@@ -173,4 +176,3 @@ else
     printf "\n Hyprland failed to install. Please check 01_check-time_installed.log and other files Install-Logs/ directory...\n\n"
     exit 1
 fi
-
