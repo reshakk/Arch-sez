@@ -24,3 +24,11 @@ fi
 
 
 clear
+
+if [ ! -d wallpapers ]; then
+	if ! git clone --depth 1 https://github.com/reshakk/wallpapers.git; then
+		echo "Failed to download wallpapers."
+	fi
+fi
+
+clear
