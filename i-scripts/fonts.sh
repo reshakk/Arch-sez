@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 fonts=(
-  adobe-source-code-pro-fonts
   noto-fonts-emoji
   otf-font-awesome
-  ttf-droid
   ttf-fira-code
   ttf-jetbrains-mono
   ttf-jetbrains-mono-nerd
