@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 package=(
-	wlogout
 	hyprshot
 	cliphist
 	kitty
