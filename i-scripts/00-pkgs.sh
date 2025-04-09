@@ -4,7 +4,6 @@ unins=(
 	dunst
 	htop
 	dolphin
- 	librewolf-bin
 	wofi
 )
 
@@ -12,7 +11,7 @@ Extra=(
 	graphite-gtk-theme
 	wps-office
 	hyprshot
-	wlogout
+ 	librewolf-bin
  	hyprland-qtutils
   	xorg-xhost
 )
@@ -40,8 +39,7 @@ main_package=(
 	pavucontrol
 	playerctl
 	meson
-	wl-clipboard
-	yad	
+	wl-clipboard	
 	rofi
 	rofi-calc
 	swaync
