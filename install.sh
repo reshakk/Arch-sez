@@ -123,7 +123,7 @@ ask_yes_no "-Do you want to download Thunar?" thunar
 printf "\n"
 ask_yes_no "-Do you want to download fish?" fish
 printf "\n"
-ask_yes_no "-Do you want to download packages for flatpak(Bottles, Cpu-x, Flatseal, Mission-center, Nextcloud, Proton-Qt, Vesktop, Warehouse)?" flatpak
+ask_yes_no "-Do you want to download packages for flatpak(Lutris, Cpu-x, Flatseal, Mission-center, Nextcloud, Proton-Qt, Vesktop, Warehouse)?" flatpak
 printf "\n"
 ask_yes_no "-Do you want to download cups and hp-drivers?" hprinter
 printf "\n"
