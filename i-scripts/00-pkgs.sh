@@ -9,7 +9,6 @@ unins=(
 
 Extra=(
 	graphite-gtk-theme
-	wps-office
 	hyprshot
  	librewolf-bin
  	hyprland-qtutils
@@ -41,7 +40,6 @@ main_package=(
 	meson
 	wl-clipboard	
 	rofi
-	rofi-calc
 	swaync
 	swww
 	swaybg
