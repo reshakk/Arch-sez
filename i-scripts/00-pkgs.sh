@@ -10,7 +10,6 @@ unins=(
 Extra=(
 	graphite-gtk-theme
 	hyprshot
- 	librewolf-bin
  	hyprland-qtutils
   	xorg-xhost
 )
