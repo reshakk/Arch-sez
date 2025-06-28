@@ -19,6 +19,7 @@ une_package=(
 	steam	
 	gedit
 	obsidian
+ 	lutris
 	atril
 	qbittorrent
 	wine
