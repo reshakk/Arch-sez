@@ -48,4 +48,4 @@ for RPG in "${flatpaks[@]}"; do
 done
 
 #flatpak override --user com.usebottles.bottles --filesystem=xdg-data/Steam
-flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud --noninteractive	
+#flatpak install flathub org.freedesktop.Platform.VulkanLayer.MangoHud --noninteractive	
