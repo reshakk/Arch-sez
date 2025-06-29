@@ -22,6 +22,7 @@ une_package=(
  	lutris
 	atril
 	qbittorrent
+ 	nextcloud-client
 	wine
 	filelight
 	qalculate-gtk
