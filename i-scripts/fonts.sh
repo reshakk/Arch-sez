@@ -6,6 +6,7 @@ fonts=(
   ttf-fira-code
   ttf-jetbrains-mono
   ttf-jetbrains-mono-nerd
+  ttf-dejavu
 )
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
