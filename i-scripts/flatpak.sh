@@ -3,7 +3,6 @@
 flatpaks=(
 	net.davidotek.pupgui2 #ProtonQt
         com.github.tchx84.Flatseal #Control the settings for the app from flathub
-        dev.vencord.Vesktop #Discord with screen-sharing        
         io.github.flattool.Warehouse #Manage all things Flatpak 
         com.nextcloud.desktopclient.nextcloud #Self-storage
         io.github.thetumultuousunicornofdarkness.cpu-x #Informations on CPU
