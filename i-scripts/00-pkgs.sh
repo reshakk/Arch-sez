@@ -9,9 +9,6 @@ unins=(
 
 Extra=(
 	graphite-gtk-theme
-	hyprshot
- 	hyprland-qtutils
-  	xorg-xhost
 )
 
 #Unnecessary packages
@@ -48,6 +45,8 @@ main_package=(
 	hypridle
 	waybar
 	hyprlock
+  	hyprshot
+  	hyprland-qtutils
 	hyprpicker
  	papirus-icon-theme
 )
@@ -66,6 +65,7 @@ stnd_com=(
 	wget	
 	nmap
  	udisks2
+  	xorg-xhost
 )
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
