@@ -21,7 +21,7 @@ une_package=(
 	qbittorrent
  	nextcloud-client
 	wine
-	filelight
+	mission-center
 	qalculate-gtk
 	btop
 )
