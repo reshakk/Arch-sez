@@ -6,7 +6,7 @@ flatpaks=(
         io.github.flattool.Warehouse #Manage all things Flatpak 
         com.nextcloud.desktopclient.nextcloud #Self-storage
         io.github.thetumultuousunicornofdarkness.cpu-x #Informations on CPU
-        io.missioncenter.MissionCenter #Monitor system
+        org.kde.filelight #Show disk usage and delete unused files
         com.rabbit_company.passky #Password-manager
 )
 
