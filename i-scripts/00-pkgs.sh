@@ -105,6 +105,6 @@ for RPG in "${Extra[@]}"; do
 	install_package "$RPG" 2>&1 | tee -a "$LOG"
 done
 
-
+sleep 2s
 
 clear

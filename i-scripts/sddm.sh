@@ -22,7 +22,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Change the working directory to the parent directory of the script
 PARENT_DIR="$SCRIPT_DIR/.."
-cd "$PARENT_DIR" || { echo " Failed to change directory to $PARENT_DIR"; exit 1; }
+cd "$PARENT_DIR" || { echo "Failed to change directory to $PARENT_DIR"; exit 1; }
 
 # Source the global functions script
 if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
@@ -47,16 +47,16 @@ printf "\n%.0s" {1..1}
 # Check if other login managers installed and disabling its service before enabling sddm
 for login_manager in "${login[@]}"; do
   if pacman -Qs "$login_manager" > /dev/null 2>&1; then
-    sudo systemctl disable "$login_manager.service" >> "$LOG" 2>&1
-    echo "$login_manager disabled." >> "$LOG" 2>&1
+    sudo systemctl disable "$login_manager.service" 2>&1 | tee -a "$LOG" 
+    echo "$login_manager disabled." 2>&1 | tee -a "$LOG"
   fi
 done
 
 # Double check with systemctl
 for manager in "${login[@]}"; do
   if systemctl is-active --quiet "$manager" > /dev/null 2>&1; then
-    echo "$manager is active, disabling it..." >> "$LOG" 2>&1
-    sudo systemctl disable "$manager" --now >> "$LOG" 2>&1
+    echo "$manager is active, disabling it..." 2>&1 | tee -a "$LOG"
+    sudo systemctl disable "$manager" --now 2>&1 | tee -a "$LOG"
   fi
 done
 
@@ -76,7 +76,7 @@ if git clone --depth 1 https://github.com/reshakk/sddmez.git; then
 	sudo mv sddmez.conf "/etc/sddm.conf.d/" 2>&1 | tee -a "$LOG"
 
 	if [ -d "/usr/share/sddm/themes" ]; then
-		mv simple-sddm-2 "/usr/share/sddm/themes/" 2>&1 | tee -a "$LOG"
+		sudo mv simple-sddm-2 "/usr/share/sddm/themes/" 2>&1 | tee -a "$LOG"
 	else
 		echo "Directory for sddm-themes doesn't exist. Check are installed sddm or not." 2>&1 | tee -a "$LOG"
 	fi

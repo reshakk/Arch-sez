@@ -20,4 +20,4 @@ for RPG in "${printer[@]}"; do
 	install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
 done
 
-sudo systemctl enable --now cups
+sudo systemctl enable cups --now 2>&1 | tee -a "$LOG"

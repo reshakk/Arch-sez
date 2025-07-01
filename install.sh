@@ -161,7 +161,7 @@ printf "\n%.0s" {1..1}
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
     printf "\n Hyprland is installed. However, some essential packages may not be installed Please see above!"
-    sleep 2
+    sleep 3s
     printf "\n It is highly recommended to reboot your system.\n\n"
 
     # Prompt user to reboot
