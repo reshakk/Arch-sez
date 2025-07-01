@@ -18,7 +18,7 @@ else
 		chmod +x copy.sh
 		./copy.sh
 	else
-		echo -e "${ERROR}Failed to download dotfiles."
+		echo "Failed to download dotfiles."
 	fi
 fi
 

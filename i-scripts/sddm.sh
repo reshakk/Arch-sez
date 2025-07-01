@@ -22,7 +22,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Change the working directory to the parent directory of the script
 PARENT_DIR="$SCRIPT_DIR/.."
-cd "$PARENT_DIR" || { echo "${ERROR} Failed to change directory to $PARENT_DIR"; exit 1; }
+cd "$PARENT_DIR" || { echo " Failed to change directory to $PARENT_DIR"; exit 1; }
 
 # Source the global functions script
 if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
@@ -65,6 +65,28 @@ printf "${INFO} Activating sddm service........\n"
 sudo systemctl enable sddm
 
 wayland_sessions_dir=/usr/share/wayland-sessions
-[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
+[ ! -d "$wayland_sessions_dir" ] && { printf "$wayland_sessions_dir not found, creating...\n"; sudo mkdir "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
 
 printf "\n%.0s" {1..2}
+printf "${INFO} Copy doftiles for sddm........\n"
+
+if git clone --depth 1 https://github.com/reshakk/sddmez.git; then
+	cd sddmez
+	sudo mkdir -p /etc/sddm.conf.d
+	sudo mv sddmez.conf "/etc/sddm.conf.d/" 2>&1 | tee -a "$LOG"
+
+	if [ -d "/usr/share/sddm/themes" ]; then
+		mv simple-sddm-2 "/usr/share/sddm/themes/" 2>&1 | tee -a "$LOG"
+	else
+		echo "Directory for sddm-themes doesn't exist. Check are installed sddm or not." 2>&1 | tee -a "$LOG"
+	fi
+else
+	echo "Failed to download sddm-themes." 2>&1 | tee -a "$LOG"
+	exit 1
+fi
+
+
+printf "\n%.0s" {1..4}
+printf "Sddm and theme  is now Loaded & Ready!"
+sleep 4s
+

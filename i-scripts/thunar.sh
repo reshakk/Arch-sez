@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if [[ $USE_PRESET = [Yy] ]]; then
-  source ./preset.sh
-fi
+#if [[ $USE_PRESET = [Yy] ]]; then
+#  source ./preset.sh
+#fi
 
 thunar=(
   thunar

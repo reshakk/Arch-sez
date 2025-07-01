@@ -15,7 +15,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_fish.log"
 install_package_pacman "fish" 2>&1 | tee -a "$LOG"
 
 while ! chsh -s $(which fish); do
-	echo "Authentication failed. Please enter the correct password." 2>&1 | tee -a "$LOG"
+	echo "${ERROR} Authentication failed. Please enter the correct password." 2>&1 | tee -a "$LOG"
 	sleep 1
 done
 printf "Shell changed successfully to fish.\n" 2>&1 | tee -a "$LOG"

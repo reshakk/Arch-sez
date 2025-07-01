@@ -92,7 +92,7 @@ for RPG in "${unins[@]}"; do
 done
 
 if [ $overall_failed -ne 0 ]; then
-  echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
+  echo -e "Some packages failed to uninstall. Please check the log."
 fi
 
 #Main packages

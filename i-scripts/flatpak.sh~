@@ -16,8 +16,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$SCRIPT_DIR/.."
 cd "$PARENT_DIR" || exit 1
 
-source "$(dirname "$(readlink -f "$0")")/Global_func.sh"
-
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_flatpak.log"
 
@@ -27,9 +25,9 @@ else
 	echo "Installing flatpak"
 	sudo pacman -S --noconfirm flatpak 2>&1 | tee -a "$LOG"
 	if pacman -Q flatpak &>/dev/null; then
-		echo -e "${OK} Flatpak was installed"
+		echo "Flatpak was installed"
 	else
-		echo -e "${ERROR} Flatpak failed to install. Please check the $LOG"
+		echo -e "Flatpak failed to install. Please check the $LOG"
 		exit 1
 	fi
 fi
@@ -38,12 +36,12 @@ for RPG in "${flatpaks[@]}"; do
 	if flatpak info "$RPG" &>/dev/null; then
 		echo "$RPG is already installed"
 	else
-		echo -e "${NOTE} Installing $RPG"
+		echo "Installing $RPG"
 		flatpak install "$RPG" --noninteractive 2>&1 | tee -a "$LOG"
 		if flatpak info "$RPG" &>/dev/null; then
 			echo "$RPG was installed"
 		else
-			echo -e "${ERROR} $RPG failed to install. Please check the $LOG."
+			echo -e "$RPG failed to install. Please check the $LOG."
 			exit 1
 		fi
 	fi

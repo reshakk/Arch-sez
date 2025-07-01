@@ -22,7 +22,7 @@ install_package_pacman() {
 		if pacman -Q "$1" &>/dev/null; then
 			echo "$1 was installed"
 		else
-			echo -e "${ERROR} $1 failed to install. Please check the $LOG."
+			echo -e "$1 failed to install. Please check the $LOG."
 			exit 1
 		fi
 	fi
@@ -37,7 +37,7 @@ install_package() {
 		if yay -Q "$1" &>/dev/null; then
 			echo "$1 was installed"
 		else
-			echo -e "${ERROR} $1 failed to install. Please check the $LOG."
+			echo -e "$1 failed to install. Please check the $LOG."
 			exit 1
 		fi
 	fi
@@ -50,11 +50,11 @@ uninstall_package() {
 		if pacman -Q "$1" &>/dev/null; then
 			echo "$1 was uninstalling"
 		else
-			echo "${ERROR}  $1 failed to uninstall. Please check the $LOG."
+			echo "$1 failed to uninstall. Please check the $LOG."
 			return 1
 		fi
 	else
-		echo "${ERROR} Not found $1"
+		echo "Not found $1"
 	fi
 	return 0
 }
