@@ -7,7 +7,6 @@ package=(
 	pavucontrol
 	wl-clipboard
 	rofi
-	rofi-calc
 	swaync
 	swww
 	swaybg
