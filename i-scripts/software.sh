@@ -7,7 +7,13 @@ amd=(
 	xf86-video-ati
 	xorg-xinit
 	xf86-video-amdgpu
+	intel-ucode
 	mangohud
+	xorg-server
+	xorg-xinit
+	xf86-video-vmware
+	xf86-video-nouveau
+	#amd-ucode
 )
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

@@ -20,10 +20,12 @@ une_package=(
 	atril
 	qbittorrent
  	nextcloud-client
+	gnome-keyring # Save autification for nextcloud
 	wine
 	mission-center
 	qalculate-gtk
 	btop
+	code
 )
 
 
@@ -49,6 +51,9 @@ main_package=(
   	hyprland-qtutils
 	hyprpicker
  	papirus-icon-theme
+	qt6-wayland
+	xdg-desktop-portal-hyprland
+	xorg-xwayland
 )
 
 
