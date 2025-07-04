@@ -117,7 +117,7 @@ execute_script() {
 }
 
 printf "\n"
-ask_yes_no "-Do you want AMD, Intell and Vmware drivers?" amd
+ask_yes_no "-Do you want AMD, Intell and Vmware drivers?" software
 printf "\n"
 ask_yes_no "-Do you want to download Thunar?" thunar
 printf "\n"
@@ -143,7 +143,7 @@ fi
 execute_script "00-pkgs.sh"
 execute_script "fonts.sh"
 
-[[ "$amd" == "Y" ]] && execute_script "software.sh"
+[[ "$software" == "Y" ]] && execute_script "software.sh"
 [[ "$thunar" == "Y" ]] && execute_script "thunar.sh"
 [[ "$fish" == "Y" ]] && execute_script "fish.sh"
 [[ "$flatpaks" == "Y" ]] && execute_script "flatpak.sh"	
