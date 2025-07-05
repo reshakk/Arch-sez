@@ -17,6 +17,13 @@ package=(
 	hyprland
 )
 
+printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+        #############
+         FINAL CHECK
+        #############
+\e[0m"
+printf "\n%.0s" {1..1} 
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -29,7 +36,8 @@ source "$(dirname "$(readlink -f "$0")")/Global_func.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_01-check.log"
 
-printf "\n%s - Final Check if essential packages where installed \n"
+echo ""
+
 # Initialize an empty array to hold missing packages
 missing=()
 
@@ -40,9 +48,9 @@ for rpg in "${package[@]}"; do
 done
 
 if [[ ${#missing[@]} -eq 0 ]]; then
-	echo "All package are installed." | tee -a "$LOG"
+	echo -e "${OK} All package are installed." | tee -a "$LOG"
 else
-	echo "The following packages are missing and will be logged."
+	echo -e "${INFO} The following packages are missing and will be logged."
 
 	for rgp in "${missing[@]}"; do
 		echo "$rpg"
@@ -50,5 +58,6 @@ else
 	done
 
 	echo "Missing packages are logged at $(date)" >> "$LOG"
+	sleep 1s
 fi
 

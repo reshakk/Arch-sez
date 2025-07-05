@@ -5,10 +5,12 @@ unins=(
 	htop
 	dolphin
 	wofi
+	nano
+	grim
 )
 
 Extra=(
-	graphite-gtk-theme
+	#graphite-gtk-theme
 )
 
 #Unnecessary packages
@@ -16,7 +18,7 @@ une_package=(
 	steam	
 	gedit
 	obsidian
- 	lutris
+ 	#lutris
 	atril
 	qbittorrent
  	nextcloud-client
@@ -26,6 +28,7 @@ une_package=(
 	qalculate-gtk
 	btop
 	code
+	libreoffice-still
 )
 
 
@@ -51,11 +54,14 @@ main_package=(
   	hyprland-qtutils
 	hyprpicker
  	papirus-icon-theme
+	slurp
 	qt6-wayland
+	qt5-wayland
 	xdg-desktop-portal-hyprland
 	xorg-xwayland
+	xdg-utils
+	polkit-kde-agent
 )
-
 
 #Standart command for terminal
 stnd_com=(
@@ -70,8 +76,18 @@ stnd_com=(
 	wget	
 	nmap
  	udisks2
+	smartmontools
   	xorg-xhost
 )
+
+printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+        ###############
+         MAIN PACKAGES
+        ###############
+\e[0m"
+printf "\n%.0s" {1..1} 
+
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

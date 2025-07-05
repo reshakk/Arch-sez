@@ -15,14 +15,15 @@ fi
 
 install_package_pacman() {
 	if pacman -Q "$1" &>/dev/null; then
-		echo "$1 is already installed"
+		echo "${OK} $1 is already installed"
 	else
-		echo "Installing $1"
+		echo "${NOTE} Installing $1"
 		sudo pacman -S --noconfirm "$1" 2>&1 | tee -a "$LOG"
 		if pacman -Q "$1" &>/dev/null; then
-			echo "$1 was installed"
+			echo "${OK} $1 was installed"
 		else
 			echo -e "${ERROR} $1 failed to install. Please check the $LOG."
+			sleep 2s
 			exit 1
 		fi
 	fi
@@ -30,14 +31,15 @@ install_package_pacman() {
 
 install_package() {
 	if yay -Q "$1" &>/dev/null; then
-		echo "$1 is already installed"
+		echo "${OK} $1 is already installed"
 	else
-		echo "Installing $1"
+		echo "${NOTE} Installing $1"
 		yay -S --noconfirm --needed "$1" 2>&1 | tee -a "$LOG"
 		if yay -Q "$1" &>/dev/null; then
-			echo "$1 was installed"
+			echo "${OK} $1 was installed"
 		else
 			echo -e "${ERROR} $1 failed to install. Please check the $LOG."
+			sleep 2s
 			exit 1
 		fi
 	fi
@@ -45,16 +47,18 @@ install_package() {
 
 uninstall_package() {
 	if pacman -Q "$1" &>/dev/null; then
-		echo "Uninstalling $1"
+		echo "${NOTE} Uninstalling $1"
 		sudo pacman -R --noconfirm "$1" 2>&1 | tee -a "$LOG"
 		if pacman -Q "$1" &>/dev/null; then
-			echo "$1 was uninstalling"
+			echo "${OK} $1 was uninstalling"
 		else
 			echo "${ERROR}  $1 failed to uninstall. Please check the $LOG."
+			sleep 1s
 			return 1
 		fi
 	else
 		echo "${ERROR} Not found $1"
+		sleep 1s
 	fi
 	return 0
 }

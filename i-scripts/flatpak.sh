@@ -4,11 +4,20 @@ flatpaks=(
 	net.davidotek.pupgui2 #ProtonQt
         com.github.tchx84.Flatseal #Control the settings for the app from flathub
         io.github.flattool.Warehouse #Manage all things Flatpak 
-        com.nextcloud.desktopclient.nextcloud #Self-storage
         io.github.thetumultuousunicornofdarkness.cpu-x #Informations on CPU
         org.kde.filelight #Show disk usage and delete unused files
-        com.rabbit_company.passky #Password-manager
+        #com.rabbit_company.passky #Password-manager
 )
+
+printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+	################
+	 FLATPAK SCRIPT
+	################
+\e[0m"
+printf "\n%.0s" {1..1} 
+
+
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -22,7 +31,7 @@ source "$(dirname "$(readlink -f "$0")")/Global_func.sh"
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_flatpak.log"
 
 if pacman -Q flatpak &>/dev/null; then
-	echo "Flatpak is already installed"
+	echo -e "${OK} Flatpak is already installed"
 else
 	echo "Installing flatpak"
 	sudo pacman -S --noconfirm flatpak 2>&1 | tee -a "$LOG"
@@ -30,20 +39,22 @@ else
 		echo -e "${OK} Flatpak was installed"
 	else
 		echo -e "${ERROR} Flatpak failed to install. Please check the $LOG"
+		sleep 2s
 		exit 1
 	fi
 fi
 
 for RPG in "${flatpaks[@]}"; do
 	if flatpak info "$RPG" &>/dev/null; then
-		echo "$RPG is already installed"
+		echo -e "${OK} $RPG is already installed"
 	else
 		echo -e "${NOTE} Installing $RPG"
 		flatpak install "$RPG" --noninteractive 2>&1 | tee -a "$LOG"
 		if flatpak info "$RPG" &>/dev/null; then
-			echo "$RPG was installed"
+			echo -e "${OK} $RPG was installed"
 		else
 			echo -e "${ERROR} $RPG failed to install. Please check the $LOG."
+			sleep 2s
 			exit 1
 		fi
 	fi

@@ -24,6 +24,8 @@ LOG="install-$(date +%d-%H%M%S).log"
 # Create directory for Logs
 mkdir -p Install-Logs
 
+ORIGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Define directory where your scripts are located
 script_directory="i-scripts"
 
@@ -35,12 +37,6 @@ fi
 
 clear
 
-if pacman -Qq | grep -qw '^pipewire$'; then
-	echo "${NOTE} PulseAudio is installed"
-	PulseAudio="N"
-else
-	PulseAudio="Y"
-fi
 
 install_package() {
     if pacman -Q "$1" &> /dev/null; then
@@ -69,6 +65,7 @@ else
 	echo "${INFO} Installing yay..."
 	git clone https://aur.archlinux.org/yay.git || { printf "%s - Failed to clone yay from AUR\n"; exit 1; }
 	cd yay || { printf "%s - Failed to enter yay directory\n"; exit 1; }
+	cd "$ORIGIN_DIR"
   	makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install yay from AUR\n"; exit 1; }
 	if pacman -Q "yay" &> /dev/null; then
 		echo "${INFO} yay has been installed successfully."
@@ -110,9 +107,11 @@ execute_script() {
             env USE_PRESET="$user_preset" "$script_path"
         else
             echo "${ERROR} ERROR: Failed to make script '$script' executable."
+	    sleep 3s
         fi
     else
         echo "${ERROR} ERROR: Script '$script' not found in '$script_directory'."
+	sleep 3s
     fi
 }
 
@@ -135,32 +134,42 @@ printf "\n"
 chmod +x i-scripts/*
 sleep 1
 
-if [ "$PulseAudio" == "Y" ]; then
-       execute_script "pipewire.sh"	
-fi
 
+execute_script "pipewire.sh"	
+sleep 2s
 #Script with main packages
 execute_script "00-pkgs.sh"
+sleep 2s
 execute_script "fonts.sh"
 
 [[ "$software" == "Y" ]] && execute_script "software.sh"
+sleep 1s
 [[ "$thunar" == "Y" ]] && execute_script "thunar.sh"
+sleep 1s
 [[ "$fish" == "Y" ]] && execute_script "fish.sh"
-[[ "$flatpaks" == "Y" ]] && execute_script "flatpak.sh"	
+sleep 1s
+[[ "$flatpak" == "Y" ]] && execute_script "flatpak.sh"	
+sleep 1s
 [[ "$hprinter" == "Y" ]] && execute_script "printer.sh"
+sleep 1s
 [[ "$sddm" == "Y" ]] && execute_script "sddm.sh"
+sleep 1s
 [[ "$dotf" == "Y" ]] && execute_script "dotfiles.sh"
+sleep 2s
 
 clear
 
 #Execute final script
 execute_script "01-check.sh"
 
+cat Install-Logs/*.log | grep ERROR > Install-Logs/all-error.log
+
 printf "\n%.0s" {1..1}
 
 # Check if hyprland or hyprland-git is installed
 if pacman -Q hyprland &> /dev/null || pacman -Q hyprland-git &> /dev/null; then
     printf "\n Hyprland is installed. However, some essential packages may not be installed Please see above!"
+    printf "\n Also you can check all error in all-error.log..."
     sleep 3s
     printf "\n It is highly recommended to reboot your system.\n\n"
 

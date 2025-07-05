@@ -1,20 +1,26 @@
 #!/usr/bin/env bash
 
 amd=(
+	mangohud
 	mesa
 	vulkan-radeon
-	libva-mesa-driver
-	xf86-video-ati
-	xorg-xinit
+	vulkan-intel
+	intel-media-driver
+	libva-intel-driver
+	xf86-video-ati	
 	xf86-video-amdgpu
-	intel-ucode
-	mangohud
+	xf86-video-intel
 	xorg-server
 	xorg-xinit
-	xf86-video-vmware
-	xf86-video-nouveau
-	#amd-ucode
 )
+
+printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+        #################
+         SOFTWARE SCRIPT
+        #################
+\e[0m"
+printf "\n%.0s" {1..1} 
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -25,7 +31,7 @@ cd "$PARENT_DIR" || exit 1
 source "$(dirname "$(readlink -f "$0")")/Global_func.sh"
 
 # Set the name of the log file to include the current date and time
-LOG="Install-Logs/install-$(date +%d-%H%M%S)_amd.log"
+LOG="Install-Logs/install-$(date +%d-%H%M%S)_software.log"
 
 for RPG in "${amd[@]}"; do
 	install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"

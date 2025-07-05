@@ -5,6 +5,14 @@ printer=(
 	hplip	
 )
 
+printf "\n%.0s" {1..2}  
+echo -e "\e[35m
+        ################
+         PRINTER SCRIPT
+        ################
+\e[0m"
+printf "\n%.0s" {1..1} 
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Change the working directory to the parent directory of the script
