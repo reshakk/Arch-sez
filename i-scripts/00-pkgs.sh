@@ -19,6 +19,7 @@ une_package=(
 	gedit
 	obsidian
  	#lutris
+  	vlc
 	atril
 	qbittorrent
  	nextcloud-client
