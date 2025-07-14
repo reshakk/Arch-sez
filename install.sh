@@ -17,20 +17,21 @@ NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
 INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 RESET="$(tput sgr0)"
 
-ORIGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Log file
+LOG="install-$(date +%d-%H%M%S).log"
 
 # Create directory for Logs
 mkdir -p Install-Logs
 
-# Log file
-LOG="Install-Logs/install-$(date +%d-%H%M%S).log"
+ORIGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define directory where your scripts are located
-script_directory="$ORIGIN_DIR/i-scripts"
+script_directory="i-scripts"
 
 # Check if running as root. If root, scripts will exit
 if [[ $EUID -eq 0 ]]; then
-	echo "${ERROR}: Don't use root privileges"
+	echo "${ERROR} ERROR: Don't use root privileges"
 	exit 1
 fi
 
@@ -45,7 +46,7 @@ install_package() {
         if sudo pacman -S --noconfirm "$1"; then
             echo "${INFO} $1 has been installed successfully."
         else
-            echo "${ERROR}: $1 cannot be installed. Please install it manually."
+            echo "${ERROR} ERROR: $1 cannot be installed. Please install it manually."
             exit 1
         fi
     fi
@@ -70,7 +71,7 @@ else
 		echo "${INFO} yay has been installed successfully."
         rm -rf yay || echo "${ERROR} Failed to delete yay directories"
 	else
-		echo "${ERROR}: yay cannot be installed. Please install it manually."
+		echo "${ERROR} ERROR: yay cannot be installed. Please install it manually."
 		exit 1
 	fi
 fi
@@ -105,11 +106,11 @@ execute_script() {
         if [[ -x "$script_path" ]]; then
             env USE_PRESET="$user_preset" "$script_path"
         else
-            echo "${ERROR}: Failed to make script '$script' executable."
+            echo "${ERROR} ERROR: Failed to make script '$script' executable."
 	    sleep 3s
         fi
     else
-        echo "${ERROR}: Script '$script' not found in '$script_directory'."
+        echo "${ERROR} ERROR: Script '$script' not found in '$script_directory'."
 	sleep 3s
     fi
 }
@@ -161,7 +162,8 @@ clear
 #Execute final script
 execute_script "01-check.sh"
 
-cat Install-Logs/*.log | grep ERROR > Install-Logs/all-error.log
+#Execute script for logs
+execute_script "log.sh"
 
 printf "\n%.0s" {1..1}
 
