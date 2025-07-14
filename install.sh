@@ -31,7 +31,7 @@ script_directory="$ORIGIN_DIR/i-scripts"
 
 # Check if running as root. If root, scripts will exit
 if [[ $EUID -eq 0 ]]; then
-	echo "${ERROR} ERROR: Don't use root privileges"
+	echo "${ERROR}: Don't use root privileges"
 	exit 1
 fi
 
@@ -46,7 +46,7 @@ install_package() {
         if sudo pacman -S --noconfirm "$1"; then
             echo "${INFO} $1 has been installed successfully."
         else
-            echo "${ERROR} ERROR: $1 cannot be installed. Please install it manually."
+            echo "${ERROR}: $1 cannot be installed. Please install it manually."
             exit 1
         fi
     fi
@@ -71,7 +71,7 @@ else
 		echo "${INFO} yay has been installed successfully."
         rm -rf yay || echo "${ERROR} Failed to delete yay directories"
 	else
-		echo "${ERROR} ERROR: yay cannot be installed. Please install it manually."
+		echo "${ERROR}: yay cannot be installed. Please install it manually."
 		exit 1
 	fi
 fi
@@ -106,11 +106,11 @@ execute_script() {
         if [[ -x "$script_path" ]]; then
             env USE_PRESET="$user_preset" "$script_path"
         else
-            echo "${ERROR} ERROR: Failed to make script '$script' executable."
+            echo "${ERROR}: Failed to make script '$script' executable."
 	    sleep 3s
         fi
     else
-        echo "${ERROR} ERROR: Script '$script' not found in '$script_directory'."
+        echo "${ERROR}: Script '$script' not found in '$script_directory'."
 	sleep 3s
     fi
 }
