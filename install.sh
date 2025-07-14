@@ -27,7 +27,7 @@ mkdir -p Install-Logs
 ORIGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define directory where your scripts are located
-script_directory="i-scripts"
+script_directory="$ORIGIN_DIR/i-scripts"
 
 # Check if running as root. If root, scripts will exit
 if [[ $EUID -eq 0 ]]; then
