@@ -17,14 +17,13 @@ NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
 INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 RESET="$(tput sgr0)"
 
-
-# Log file
-LOG="install-$(date +%d-%H%M%S).log"
+ORIGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Create directory for Logs
 mkdir -p Install-Logs
 
-ORIGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Log file
+LOG="Install-Logs/install-$(date +%d-%H%M%S).log"
 
 # Define directory where your scripts are located
 script_directory="$ORIGIN_DIR/i-scripts"
