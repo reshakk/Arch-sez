@@ -42,6 +42,7 @@ main_package=(
 	pavucontrol
 	playerctl
 	meson
+        cmake
 	wl-clipboard	
 	rofi
 	swaync
