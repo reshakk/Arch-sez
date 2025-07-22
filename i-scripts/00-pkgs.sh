@@ -27,11 +27,13 @@ une_package=(
 	mission-center
 	qalculate-gtk
 	btop
-	code
 	libreoffice-still
+ 	#code
  	#lutris
   	#aichat
    	#dotnet-sdk-7.0
+    	#tidy
+     	#npm
 )
 
 
