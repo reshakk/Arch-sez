@@ -18,7 +18,6 @@ une_package=(
 	steam	
 	gedit
 	obsidian
- 	#lutris
   	vlc
 	atril
 	qbittorrent
@@ -30,6 +29,9 @@ une_package=(
 	btop
 	code
 	libreoffice-still
+ 	#lutris
+  	#aichat
+   	#dotnet-sdk-7.0
 )
 
 
