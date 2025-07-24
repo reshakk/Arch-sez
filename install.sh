@@ -17,6 +17,14 @@ NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
 INFO="$(tput setaf 4)[INFO]$(tput sgr0)"
 RESET="$(tput sgr0)"
 
+# Options for quick setting in scripts(Y\N). 
+PRESET="N" # Don't need to choose option, just execute all scripts
+UNE_PACKAGE="Y" # For unnecessary packages
+VIS_PACKAGE="Y" # For visual packages
+
+export "$PRESET"
+export "$UNE_PACKAGE"
+export "$VIS_PACKAGE"
 
 # Log file
 LOG="install-$(date +%d-%H%M%S).log"
@@ -115,23 +123,42 @@ execute_script() {
     fi
 }
 
-printf "\n"
-ask_yes_no "-Do you want AMD, Intell and Vmware drivers?" software
-printf "\n"
-ask_yes_no "-Do you want to download Thunar?" thunar
-printf "\n"
-ask_yes_no "-Do you want to download fish?" fish
-printf "\n"
-ask_yes_no "-Do you want to download packages for flatpak(Cpu-x, Flatseal, Filelight, Proton-Qt, Warehouse)?" flatpak
-printf "\n"
-ask_yes_no "-Do you want to download cups and hp-drivers?" hprinter
-printf "\n"
-ask_yes_no "-Do you want to download sddm?" sddm
-printf "\n"
-ask_yes_no "-Do you want to set dotfiles?" dotf
-printf "\n"
-ask_yes_no "-Do you want to install plugins for vim?" vimp
-printf "\n"
+en_multilib() {
+  sudo sed -i 's/^#\[multilib\]/[multilib]/' /etc/pacman.conf
+  sudo sed -i '/^\[multilib\]$/ { n; s/^#//; }' /etc/pacman.conf
+}
+
+if [[ "$PRESET" == "Y" ]]; then
+  software="Y"
+  thunar="Y"
+  fish="Y"
+  flatpak="Y"
+  hprinter="Y"
+  sddm="Y"
+  dotf="Y"
+  vimp="Y"
+  mult="Y"
+else
+  printf "\n"
+  ask_yes_no "-Do you want AMD, Intell and Vmware drivers?" software
+  printf "\n"
+  ask_yes_no "-Do you want to download Thunar?" thunar
+  printf "\n"
+  ask_yes_no "-Do you want to download fish?" fish
+  printf "\n"
+  ask_yes_no "-Do you want to download packages for flatpak(Cpu-x, Flatseal, Filelight, Proton-Qt, Warehouse)?" flatpak
+  printf "\n"
+  ask_yes_no "-Do you want to download cups and hp-drivers?" hprinter
+  printf "\n"
+  ask_yes_no "-Do you want to download sddm?" sddm
+  printf "\n"
+  ask_yes_no "-Do you want to set dotfiles?" dotf
+  printf "\n"
+  ask_yes_no "-Do you want to install plugins for vim?" vimp
+  printf "\n"
+  ask_yes_no "-Do you want to enable multilib repository?" mult
+  printf "\n"
+fi
 
 chmod +x i-scripts/*
 sleep 1
@@ -159,6 +186,8 @@ sleep 1s
 [[ "$dotf" == "Y" ]] && execute_script "dotfiles.sh"
 sleep 2s
 [[ "$vimp" == "Y" ]] && execute_script "vim.sh"
+sleep 2s
+[[ "$mult" == "Y" ]] && en_multilib
 sleep 2s
 
 clear

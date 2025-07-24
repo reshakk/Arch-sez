@@ -18,7 +18,7 @@ une_package=(
 	steam	
 	gedit
 	obsidian
-  	vlc
+	vlc
 	atril
 	qbittorrent
  	nextcloud-client
@@ -30,10 +30,10 @@ une_package=(
 	libreoffice-still
  	#code
  	#lutris
-  	#aichat
-   	#dotnet-sdk-7.0
-    	#tidy
-     	#npm
+	#aichat
+	#dotnet-sdk-7.0
+	#tidy
+	#npm
 )
 
 
@@ -46,27 +46,31 @@ main_package=(
 	pavucontrol
 	playerctl
 	meson
-        cmake
+	cmake
 	wl-clipboard	
 	rofi
 	swaync
-	swww
-	swaybg
-	nwg-look
 	hypridle
 	waybar
 	hyprlock
-  	hyprshot
-  	hyprland-qtutils
-	hyprpicker
- 	papirus-icon-theme
-	slurp
+	hyprshot
+	hyprland-qtutils
 	qt6-wayland
 	qt5-wayland
 	xdg-desktop-portal-hyprland
 	xorg-xwayland
 	xdg-utils
 	polkit-kde-agent
+)
+
+#System should be work without it
+visual_package=(
+ 	papirus-icon-theme
+	slurp
+	hyprpicker
+	swww
+	swaybg
+	nwg-look
 )
 
 #Standart command for terminal
@@ -80,10 +84,10 @@ stnd_com=(
 	curl
 	man
 	wget	
-	nmap
+	#nmap
  	udisks2
 	smartmontools
-  	xorg-xhost
+	xorg-xhost
 )
 
 printf "\n%.0s" {1..2}  
@@ -122,10 +126,21 @@ if [ $overall_failed -ne 0 ]; then
   echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
 fi
 
+
 #Main packages
-for RPG in "${une_package[@]}" "${main_package[@]}" "${stnd_com[@]}"; do
-	install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
+for RPG in "${main_package[@]}" "${stnd_com[@]}";  do
+  install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
 done
+
+if [[ "$VIS_PACKAGE" == "Y" ]]; then
+  for RPG in "${visual_package[@]}";  do
+    install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
+  done
+elif [[ "$UNE_PACKAGE" == "Y" ]]; then
+  for RPG in "${une_package[@]}";  do
+    install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
+  done
+fi
 
 #Extra packages
 for RPG in "${Extra[@]}"; do

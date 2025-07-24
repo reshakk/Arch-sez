@@ -6,6 +6,11 @@ plugins=(
 	https://github.com/Yggdroot/indentLine # Displaying thin vertical lines at each indentation level for code indented with spaces
 	https://github.com/dense-analysis/ale # Check syntax
 	https://github.com/mattn/emmet-vim # Abbreviations
+	https://vimawesome.com/plugin/vim-css-color-the-story-of-us
+	https://github.com/hail2u/vim-css3-syntax
+	https://github.com/othree/html5.vim
+	https://github.com/preservim/vim-indent-guides
+	https://github.com/Valloric/MatchTagAlways.git
 )
 
 npm_plug=(
@@ -60,6 +65,14 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" Autocomplete for html
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=236
+hi IndentGuidesEven ctermbg=NONE
 
 " Enable HTML linters: htmlhint and tidy
 let g:ale_linters = {
@@ -77,6 +90,15 @@ let g:ale_sign_warning = '--'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" Css syntax
+augroup VimCSS3Syntax
+  autocmd!
+
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+let g:mta_use_matchparen_group = 1
 
 
 EOF
