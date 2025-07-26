@@ -1,5 +1,4 @@
 #!/bin/bash
-# SDDM Log-in Manager #
 
 sddm=(
   qt6-5compat 

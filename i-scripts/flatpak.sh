@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 flatpaks=(
-	net.davidotek.pupgui2 #ProtonQt
-        com.github.tchx84.Flatseal #Control the settings for the app from flathub
-        io.github.flattool.Warehouse #Manage all things Flatpak 
-        io.github.thetumultuousunicornofdarkness.cpu-x #Informations on CPU
-        org.kde.filelight #Show disk usage and delete unused files
-        #com.rabbit_company.passky #Password-manager
+  net.davidotek.pupgui2 #ProtonQt
+  com.github.tchx84.Flatseal #Control the settings for the app from flathub
+  io.github.flattool.Warehouse #Manage all things Flatpak 
+  io.github.thetumultuousunicornofdarkness.cpu-x #Informations on CPU
+  org.kde.filelight #Show disk usage and delete unused files
+  #com.rabbit_company.passky #Password-manager
 )
 
 printf "\n%.0s" {1..2}  

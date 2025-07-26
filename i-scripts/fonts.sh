@@ -33,5 +33,5 @@ for RPG in "${fonts[@]}"; do
 	install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
 done
 
-#Microsoft fonts (include: Times new roman, calibri and the like)
+# Microsoft fonts (include: Times new roman, calibri and the like)
 install_package "ttf-ms-fonts" 2>&1 | tee -a  "$LOG" 

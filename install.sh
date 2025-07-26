@@ -21,10 +21,12 @@ RESET="$(tput sgr0)"
 PRESET="N" # Don't need to choose option, just execute all scripts
 UNE_PACKAGE="Y" # For unnecessary packages
 VIS_PACKAGE="Y" # For visual packages
+DEF_PACKAGE="Y" # For develop packages
 
 export "$PRESET"
 export "$UNE_PACKAGE"
 export "$VIS_PACKAGE"
+export "$DEF_PACKAGE"
 
 # Log file
 LOG="install-$(date +%d-%H%M%S).log"
@@ -136,7 +138,6 @@ if [[ "$PRESET" == "Y" ]]; then
   hprinter="Y"
   sddm="Y"
   dotf="Y"
-  vimp="Y"
   mult="Y"
 else
   printf "\n"
@@ -154,8 +155,6 @@ else
   printf "\n"
   ask_yes_no "-Do you want to set dotfiles?" dotf
   printf "\n"
-  ask_yes_no "-Do you want to install plugins for vim?" vimp
-  printf "\n"
   ask_yes_no "-Do you want to enable multilib repository?" mult
   printf "\n"
 fi
@@ -166,7 +165,7 @@ sleep 1
 
 execute_script "pipewire.sh"	
 sleep 2s
-#Script with main packages
+# Script with main packages
 execute_script "00-pkgs.sh"
 sleep 2s
 execute_script "fonts.sh"
@@ -185,17 +184,15 @@ sleep 1s
 sleep 1s
 [[ "$dotf" == "Y" ]] && execute_script "dotfiles.sh"
 sleep 2s
-[[ "$vimp" == "Y" ]] && execute_script "vim.sh"
-sleep 2s
 [[ "$mult" == "Y" ]] && en_multilib
 sleep 2s
 
 clear
 
-#Execute final script
+# Execute final script
 execute_script "01-check.sh"
 
-#Execute script for logs
+# Execute script for logs
 execute_script "log.sh"
 
 printf "\n%.0s" {1..1}

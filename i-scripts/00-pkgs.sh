@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Package to uninstall
 unins=(
 	dunst
 	htop
@@ -13,7 +14,7 @@ Extra=(
 	#graphite-gtk-theme
 )
 
-#Unnecessary packages
+# Unnecessary packages
 une_package=(
 	steam	
 	gedit
@@ -27,17 +28,22 @@ une_package=(
 	mission-center
 	qalculate-gtk
 	btop
-	libreoffice-still
- 	#code
- 	#lutris
-	#aichat
-	#dotnet-sdk-7.0
-	#tidy
-	#npm
+	libreoffice-still	
 )
 
+# Unnecessary package for develop
+def_package=(
+  #code
+	#tidy
+	aichat
+	dotnet-sdk-7.0
+	npm
+  neovim
+	meson
+	cmake
+)
 
-#Importen package for Hyprland
+# Importen package for Hyprland
 main_package=(	
 	vim
 	cliphist
@@ -45,8 +51,6 @@ main_package=(
 	shotwell
 	pavucontrol
 	playerctl
-	meson
-	cmake
 	wl-clipboard	
 	rofi
 	swaync
@@ -63,7 +67,7 @@ main_package=(
 	polkit-kde-agent
 )
 
-#System should be work without it
+# System should be work without it
 visual_package=(
  	papirus-icon-theme
 	slurp
@@ -73,7 +77,7 @@ visual_package=(
 	nwg-look
 )
 
-#Standart command for terminal
+# Standart command for terminal
 stnd_com=(
 	less
 	git
@@ -127,7 +131,7 @@ if [ $overall_failed -ne 0 ]; then
 fi
 
 
-#Main packages
+# Main packages
 for RPG in "${main_package[@]}" "${stnd_com[@]}";  do
   install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
 done
@@ -140,9 +144,15 @@ elif [[ "$UNE_PACKAGE" == "Y" ]]; then
   for RPG in "${une_package[@]}";  do
     install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
   done
+elif [[ "$DEF_PACKAGE" == "Y"  ]]; then
+  for RPG in "${def_package[@]}"; do  
+    install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
+  done
+  
+  
 fi
 
-#Extra packages
+# Extra packages
 for RPG in "${Extra[@]}"; do
 	install_package "$RPG" 2>&1 | tee -a "$LOG"
 done
