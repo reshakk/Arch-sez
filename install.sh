@@ -19,14 +19,7 @@ RESET="$(tput sgr0)"
 
 # Options for quick setting in scripts(Y\N). 
 PRESET="N" # Don't need to choose option, just execute all scripts
-UNE_PACKAGE="Y" # For unnecessary packages
-VIS_PACKAGE="Y" # For visual packages
-DEF_PACKAGE="Y" # For develop packages
-
 export "$PRESET"
-export "$UNE_PACKAGE"
-export "$VIS_PACKAGE"
-export "$DEF_PACKAGE"
 
 # Log file
 LOG="install-$(date +%d-%H%M%S).log"

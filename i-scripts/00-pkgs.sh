@@ -28,11 +28,9 @@ une_package=(
 	mission-center
 	qalculate-gtk
 	btop
-	libreoffice-still	
-)
-
-# Unnecessary package for develop
-def_package=(
+  libreoffice-still
+ 
+  # Def package
   #code
 	#tidy
 	aichat
@@ -41,6 +39,14 @@ def_package=(
   neovim
 	meson
 	cmake
+
+  # Visual package
+  papirus-icon-theme
+	slurp
+	hyprpicker
+	swww
+	swaybg
+	nwg-look
 )
 
 # Importen package for Hyprland
@@ -67,15 +73,6 @@ main_package=(
 	polkit-kde-agent
 )
 
-# System should be work without it
-visual_package=(
- 	papirus-icon-theme
-	slurp
-	hyprpicker
-	swww
-	swaybg
-	nwg-look
-)
 
 # Standart command for terminal
 stnd_com=(
@@ -130,27 +127,10 @@ if [ $overall_failed -ne 0 ]; then
   echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
 fi
 
-
 # Main packages
-for RPG in "${main_package[@]}" "${stnd_com[@]}";  do
+for RPG in "${main_package[@]}" "${stnd_com[@]}" "${une_package}" ;  do
   install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
 done
-
-if [[ "$VIS_PACKAGE" == "Y" ]]; then
-  for RPG in "${visual_package[@]}";  do
-    install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
-  done
-elif [[ "$UNE_PACKAGE" == "Y" ]]; then
-  for RPG in "${une_package[@]}";  do
-    install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
-  done
-elif [[ "$DEF_PACKAGE" == "Y"  ]]; then
-  for RPG in "${def_package[@]}"; do  
-    install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
-  done
-  
-  
-fi
 
 # Extra packages
 for RPG in "${Extra[@]}"; do
