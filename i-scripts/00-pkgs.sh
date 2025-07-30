@@ -6,7 +6,7 @@ unins=(
 	htop
 	dolphin
 	wofi
-  rofi
+  	rofi
 	nano
 	grim
 )
@@ -17,11 +17,12 @@ Extra=(
 
 # Unnecessary packages
 une_package=(
-	steam	
+	steam
+ 	discord
 	gedit
 	obsidian
 	mpv
-  mpv-mpris 
+  	mpv-mpris 
 	atril
 	qbittorrent
  	nextcloud-client
@@ -30,20 +31,20 @@ une_package=(
 	mission-center
 	qalculate-gtk
 	btop
-  libreoffice-still 
-  #code
+  	libreoffice-still 
+  	#code
 	#tidy
-  #npm
+  	#npm
 	aichat
 	dotnet-sdk-7.0
-  neovim
+  	neovim
 	slurp
 	hyprpicker
 	swww
 	swaybg
 	nwg-look
-  gnome-themes-extra # For nwg
-  gnome-themes-extra
+  	gnome-themes-extra # For nwg
+  	gnome-themes-extra
 )
 
 # Importen package for Hyprland
@@ -69,7 +70,7 @@ main_package=(
 	xdg-utils
 	meson
 	cmake
-  cpio
+  	cpio
 )
 
 
