@@ -21,11 +21,14 @@ RESET="$(tput sgr0)"
 PRESET="N" # Don't need to choose option, just execute all scripts
 export "$PRESET"
 
-# Log file
-LOG="install-$(date +%d-%H%M%S).log"
-
 # Create directory for Logs
 mkdir -p Install-Logs
+
+# Create directory for repository from git
+mkdir -p tmp
+
+# Log file
+LOG="Install-Logs/install-$(date +%d-%H%M%S).log"
 
 ORIGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -66,13 +69,12 @@ if pacman -Q "yay" &> /dev/null; then
 	echo "${NOTE} yay is already installed."
 else
 	echo "${INFO} Installing yay..."
-	git clone https://aur.archlinux.org/yay.git || { printf "%s - Failed to clone yay from AUR\n"; exit 1; }
-	cd yay || { printf "%s - Failed to enter yay directory\n"; exit 1; }
+	git clone https://aur.archlinux.org/yay.git tmp/yay || { printf "%s - Failed to clone yay from AUR\n"; exit 1; }
+	cd tmp/yay || { printf "%s - Failed to enter yay directory\n"; exit 1; }
+  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install yay from AUR\n"; exit 1; }
 	cd "$ORIGIN_DIR"
-  	makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install yay from AUR\n"; exit 1; }
 	if pacman -Q "yay" &> /dev/null; then
 		echo "${INFO} yay has been installed successfully."
-        rm -rf yay || echo "${ERROR} Failed to delete yay directories"
 	else
 		echo "${ERROR} ERROR: yay cannot be installed. Please install it manually."
 		exit 1
@@ -118,10 +120,6 @@ execute_script() {
     fi
 }
 
-en_multilib() {
-  sudo sed -i 's/^#\[multilib\]/[multilib]/' /etc/pacman.conf
-  sudo sed -i '/^\[multilib\]$/ { n; s/^#//; }' /etc/pacman.conf
-}
 
 if [[ "$PRESET" == "Y" ]]; then
   software="Y"
@@ -131,7 +129,6 @@ if [[ "$PRESET" == "Y" ]]; then
   hprinter="Y"
   sddm="Y"
   dotf="Y"
-  mult="Y"
 else
   printf "\n"
   ask_yes_no "-Do you want AMD, Intell and Vmware drivers?" software
@@ -147,8 +144,6 @@ else
   ask_yes_no "-Do you want to download sddm?" sddm
   printf "\n"
   ask_yes_no "-Do you want to set dotfiles?" dotf
-  printf "\n"
-  ask_yes_no "-Do you want to enable multilib repository?" mult
   printf "\n"
 fi
 
@@ -177,8 +172,7 @@ sleep 1s
 sleep 1s
 [[ "$dotf" == "Y" ]] && execute_script "dotfiles.sh"
 sleep 2s
-[[ "$mult" == "Y" ]] && en_multilib
-sleep 2s
+
 
 clear
 

@@ -18,7 +18,7 @@ ERROR_FILE="$LOG_DIR/errors.txt"
 find "$LOG_DIR" -type f -name "*.log" -exec grep "ERROR" {} + >> "$ERROR_FILE"
 
 if pacman -Q python &> /dev/null; then
-	python3 generate_report.py "$ERROR_FILE"
+	python3 i-scripts/generate_report.py "$ERROR_FILE"
 else
 	printf "\n%.0s" {1..1}
 	echo "You can check the summary information about the error in the $ERROR_FILE"

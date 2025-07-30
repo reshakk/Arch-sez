@@ -6,6 +6,7 @@ unins=(
 	htop
 	dolphin
 	wofi
+  rofi
 	nano
 	grim
 )
@@ -19,7 +20,8 @@ une_package=(
 	steam	
 	gedit
 	obsidian
-	vlc
+	mpv
+  mpv-mpris 
 	atril
 	qbittorrent
  	nextcloud-client
@@ -28,25 +30,20 @@ une_package=(
 	mission-center
 	qalculate-gtk
 	btop
-  libreoffice-still
- 
-  # Def package
+  libreoffice-still 
   #code
 	#tidy
+  #npm
 	aichat
 	dotnet-sdk-7.0
-	npm
   neovim
-	meson
-	cmake
-
-  # Visual package
-  papirus-icon-theme
 	slurp
 	hyprpicker
 	swww
 	swaybg
 	nwg-look
+  gnome-themes-extra # For nwg
+  gnome-themes-extra
 )
 
 # Importen package for Hyprland
@@ -58,7 +55,7 @@ main_package=(
 	pavucontrol
 	playerctl
 	wl-clipboard	
-	rofi
+	rofi-wayland
 	swaync
 	hypridle
 	waybar
@@ -70,7 +67,9 @@ main_package=(
 	xdg-desktop-portal-hyprland
 	xorg-xwayland
 	xdg-utils
-	polkit-kde-agent
+	meson
+	cmake
+  cpio
 )
 
 
@@ -111,6 +110,16 @@ source "$(dirname "$(readlink -f "$0")")/Global_func.sh"
 # Set the name of the log file to include the current date and time
 LOG="Install-Logs/install-$(date +%d-%H%M%S)_hyprpkg.log"
 
+# Main packages
+for RPG in "${main_package[@]}" "${stnd_com[@]}" "${une_package[@]}" ;  do
+  install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
+done
+
+# Extra packages
+for RPG in "${Extra[@]}"; do
+	install_package "$RPG" 2>&1 | tee -a "$LOG"
+done
+
 # uninstalling conflicting packages
 # Initialize a variable to track overall errors
 overall_failed=0
@@ -126,16 +135,6 @@ done
 if [ $overall_failed -ne 0 ]; then
   echo -e "${ERROR} Some packages failed to uninstall. Please check the log."
 fi
-
-# Main packages
-for RPG in "${main_package[@]}" "${stnd_com[@]}" "${une_package}" ;  do
-  install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
-done
-
-# Extra packages
-for RPG in "${Extra[@]}"; do
-	install_package "$RPG" 2>&1 | tee -a "$LOG"
-done
 
 sleep 2s
 

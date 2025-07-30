@@ -14,8 +14,8 @@ if [ -d Arch-dotfiles ]; then
 	chmod +x copy.sh
 	./copy.sh
 else
-	if git clone --depth 1 https://github.com/reshakk/Arch-dotfiles.git; then
-		cd Arch-dotfiles || exit 1
+	if git clone --depth 1 https://github.com/reshakk/Arch-dotfiles.git tmp/Arch-dotfiles; then
+		cd tmp/Arch-dotfiles || exit 1
 		chmod +x copy.sh
 		./copy.sh
 	else
