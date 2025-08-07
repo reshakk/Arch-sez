@@ -33,8 +33,7 @@ une_package=(
 	btop
   	libreoffice-still 
   	#code
-	#tidy
-  	#npm
+  npm
 	aichat
 	dotnet-sdk-7.0
   	neovim
@@ -45,6 +44,7 @@ une_package=(
 	nwg-look
   	gnome-themes-extra # For nwg
   	gnome-themes-extra
+    papirus-icon-theme
 )
 
 # Importen package for Hyprland
