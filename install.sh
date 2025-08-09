@@ -71,7 +71,7 @@ else
 	echo "${INFO} Installing yay..."
 	git clone https://aur.archlinux.org/yay.git tmp/yay || { printf "%s - Failed to clone yay from AUR\n"; exit 1; }
 	cd tmp/yay || { printf "%s - Failed to enter yay directory\n"; exit 1; }
-  makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install yay from AUR\n"; exit 1; }
+  makepkg -si --noconfirm 2>&1 | tee -a "$ORIGIN_DIR/$LOG" || { printf "%s - Failed to install yay from AUR\n"; exit 1; }
 	cd "$ORIGIN_DIR"
 	if pacman -Q "yay" &> /dev/null; then
 		echo "${INFO} yay has been installed successfully."
