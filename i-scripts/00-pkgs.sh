@@ -6,7 +6,7 @@ unins=(
 	htop
 	dolphin
 	wofi
-  	rofi
+  rofi
 	nano
 	grim
 )
@@ -22,7 +22,7 @@ une_package=(
 	gedit
 	obsidian
 	mpv
-  	mpv-mpris 
+  mpv-mpris 
 	atril
 	qbittorrent
  	nextcloud-client
@@ -31,20 +31,21 @@ une_package=(
 	mission-center
 	qalculate-gtk
 	btop
-  	libreoffice-still 
-  	#code
+  libreoffice-still 
+  #code
   npm
 	aichat
 	dotnet-sdk-7.0
-  	neovim
+  neovim
 	slurp
 	hyprpicker
 	swww
 	swaybg
 	nwg-look
-  	gnome-themes-extra # For nwg
-  	gnome-themes-extra
-    papirus-icon-theme
+  python-pywal
+  gnome-themes-extra # For nwg
+  gnome-themes-extra
+  papirus-icon-theme
 )
 
 # Importen package for Hyprland
@@ -70,7 +71,7 @@ main_package=(
 	xdg-utils
 	meson
 	cmake
-  	cpio
+  cpio
 )
 
 
@@ -86,6 +87,7 @@ stnd_com=(
 	man
 	wget	
 	#nmap
+  tmux
  	udisks2
 	smartmontools
 	xorg-xhost

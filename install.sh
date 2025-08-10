@@ -109,7 +109,7 @@ execute_script() {
     if [[ -f "$script_path" ]]; then
         chmod +x "$script_path"
         if [[ -x "$script_path" ]]; then
-            env USE_PRESET="$user_preset" "$script_path"
+            "$script_path"
         else
             echo "${ERROR} ERROR: Failed to make script '$script' executable."
 	    sleep 3s
