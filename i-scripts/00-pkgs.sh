@@ -17,80 +17,79 @@ Extra=(
 
 # Unnecessary packages
 une_package=(
-	steam
- 	discord
-	gedit
-	obsidian
-	mpv
+  steam
+  discord
+  gedit
+  obsidian
+  mpv
   mpv-mpris 
-	atril
-	qbittorrent
- 	nextcloud-client
-	gnome-keyring # Save autification for nextcloud
-	wine
-	mission-center
-	qalculate-gtk
-	btop
+  atril
+  qbittorrent
+  nextcloud-client
+  gnome-keyring # Save autification for nextcloud
+  wine
+  mission-center
+  qalculate-gtk
+  btop
   libreoffice-still 
   #code
   npm
-	aichat
-	dotnet-sdk-7.0
+  aichat
+  dotnet-sdk-7.0
   neovim
-	slurp
-	hyprpicker
-	swww
-	swaybg
-	nwg-look
+  slurp
+  hyprpicker
+  swww
+  swaybg
+  nwg-look
   python-pywal
   gnome-themes-extra # For nwg
-  gnome-themes-extra
   papirus-icon-theme
 )
 
 # Importen package for Hyprland
 main_package=(	
-	vim
-	cliphist
-	kitty
-	shotwell
-	pavucontrol
-	playerctl
-	wl-clipboard	
-	rofi-wayland
-	swaync
-	hypridle
-	waybar
-	hyprlock
-	hyprshot
-	hyprland-qtutils
-	qt6-wayland
-	qt5-wayland
-	xdg-desktop-portal-hyprland
-	xorg-xwayland
-	xdg-utils
-	meson
-	cmake
+  vim
+  cliphist
+  kitty
+  shotwell
+  pavucontrol
+  playerctl
+  wl-clipboard	
+  rofi-wayland
+  swaync
+  hypridle
+  waybar
+  hyprlock
+  hyprshot
+  hyprland-qtutils
+  qt6-wayland
+  qt5-wayland
+  xdg-desktop-portal-hyprland
+  xorg-xwayland
+  xdg-utils
+  meson
+  cmake
   cpio
 )
 
 
 # Standart command for terminal
 stnd_com=(
-	less
-	git
-	zip
-	unzip
-	rsync
-	cron
-	curl
-	man
-	wget	
-	#nmap
+  less
+  git
+  zip
+  unzip
+  rsync
+  cron
+  curl
+  man
+  wget	
+  #nmap
   tmux
- 	udisks2
-	smartmontools
-	xorg-xhost
+  udisks2
+  smartmontools
+  xorg-xhost
 )
 
 printf "\n%.0s" {1..2}  
