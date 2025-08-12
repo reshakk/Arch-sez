@@ -2,13 +2,13 @@
 
 # Package to uninstall
 unins=(
-	dunst
-	htop
-	dolphin
-	wofi
+  dunst
+  htop
+  dolphin
+  wofi
   rofi
-	nano
-	grim
+  nano
+  grim
 )
 
 Extra=(

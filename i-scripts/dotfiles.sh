@@ -9,13 +9,17 @@ cd "$PARENT_DIR" || exit 1
 
 source "$(dirname "$(readlink -f "$0")")/Global_func.sh"
 
-if [ -d Hyprland-dot ]; then
-	cd Hyprland-dot
+HYPR_DIR="$HOME/Templates/git/Hyprland-dot"
+
+mkdir -p "$HYPR_DIR"
+
+if [ -d "$HYPR_DIR" ]; then
+	cd "$HYPR_DIR"
 	chmod +x copy.sh
 	./copy.sh
 else
-	if git clone --depth 1 https://github.com/reshakk/Arch-dotfiles.git tmp/Hyprland-dot; then
-		cd tmp/Hyprland-dot || exit 1
+	if git clone --depth 1 https://github.com/reshakk/Hyprland-dot.git "$HYPR_DIR"; then
+		cd "$HYPR_DIR" || exit 1
 		chmod +x copy.sh
 		./copy.sh
 	else

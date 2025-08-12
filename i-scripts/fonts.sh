@@ -1,12 +1,27 @@
 #!/usr/bin/env bash
 
 fonts=(
-  noto-fonts-emoji
-  otf-font-awesome
+  # lib32-sdl2_ttf
+  # lib32-sdl_ttf
+  noto-fonts
+  opendesktop-fonts
+  # sdl2_ttf
+  # sdl_ttf
+  ttf-bitstream-vera
+  ttf-dejavu
   ttf-fira-code
   ttf-jetbrains-mono
   ttf-jetbrains-mono-nerd
-  ttf-dejavu
+  ttf-liberation
+  ttf-meslo-nerd
+  ttf-opensans
+  adobe-source-han-sans-cn-fonts
+  adobe-source-han-sans-jp-fonts
+  adobe-source-han-sans-kr-fonts
+  otf-font-awesome
+  powerline-fonts
+  noto-fonts-emoji
+  rofi-emoji
 )
 
 printf "\n%.0s" {1..2}  
