@@ -49,4 +49,4 @@ for RPG in "${fonts[@]}"; do
 done
 
 # Microsoft fonts (include: Times new roman, calibri and the like)
-install_package "ttf-ms-fonts" 2>&1 | tee -a  "$LOG" 
+#install_package "ttf-ms-fonts" 2>&1 | tee -a  "$LOG" 
