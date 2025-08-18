@@ -38,10 +38,10 @@ for RPG in "${amd[@]}"; do
 done
 
 # Some times this option can slow down performance in some apps
-sudo touch "/etc/sysctl.d/99-splitlock.conf"
-echo "kernel.split_lock_mitigate=0" | sudo tee > "/etc/sysctl.d/99-splitlock.conf"
+#sudo touch "/etc/sysctl.d/99-splitlock.conf"
+#echo "kernel.split_lock_mitigate=0" | sudo tee > "/etc/sysctl.d/99-splitlock.conf"
 
 # Increase amd shader cache size
-sudo touch "/etc/profile.d/increase-shadercache.sh"
-echo -e "export AMD_VULKAN_ICD=RADV
-export MESA_SHADER_CACHE_MAX_SIZE=12G" | sudo tee > "/etc/profile.d/increase-shadercache.sh"
+#sudo touch "/etc/profile.d/increase-shadercache.sh"
+#echo -e "export AMD_VULKAN_ICD=RADV
+#export MESA_SHADER_CACHE_MAX_SIZE=12G" | sudo tee > "/etc/profile.d/increase-shadercache.sh"
