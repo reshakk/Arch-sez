@@ -9,6 +9,8 @@ unins=(
   rofi
   nano
   grim
+  mpv
+  mpv-mpris 
 )
 
 Extra=(
@@ -21,8 +23,7 @@ une_package=(
   discord
   gedit
   obsidian
-  mpv
-  mpv-mpris 
+  vlc
   atril
   qbittorrent
   nextcloud-client
