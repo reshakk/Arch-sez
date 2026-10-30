@@ -62,6 +62,7 @@ install_package() {
 install_package "base-devel"
 install_package "archlinux-keyring"
 install_package "git"
+install_package "hyprland"
 
 
 #Install yay

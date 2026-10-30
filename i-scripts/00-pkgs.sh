@@ -11,6 +11,7 @@ unins=(
   grim
   mpv
   mpv-mpris 
+  alacritty
 )
 
 Extra=(
@@ -35,7 +36,6 @@ une_package=(
   libreoffice-still 
   #code
   npm
-  aichat
   dotnet-sdk-7.0
   neovim
   slurp
@@ -43,9 +43,9 @@ une_package=(
   swww
   swaybg
   nwg-look
-  python-pywal
   gnome-themes-extra # For nwg
   papirus-icon-theme
+  matugen
 )
 
 # Importen package for Hyprland
