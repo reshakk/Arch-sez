@@ -35,8 +35,8 @@ une_package=(
   btop
   libreoffice-still 
   #code
-  npm
-  dotnet-sdk-7.0
+  #npm
+  #dotnet-sdk-7.0
   neovim
   slurp
   hyprpicker
