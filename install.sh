@@ -130,6 +130,7 @@ if [[ "$PRESET" == "Y" ]]; then
   hprinter="Y"
   sddm="Y"
   dotf="Y"
+  virt="Y"
 else
   printf "\n"
   ask_yes_no "-Do you want AMD, Intell and Vmware drivers?" software
@@ -146,6 +147,8 @@ else
   printf "\n"
   ask_yes_no "-Do you want to set dotfiles?" dotf
   printf "\n"
+  ask_yes_no "-Do you want to install virt-manager with QEMU(KVM)?" virt
+  printf "\n"
 fi
 
 chmod +x i-scripts/*
@@ -160,6 +163,8 @@ sleep 2s
 execute_script "fonts.sh"
 
 [[ "$software" == "Y" ]] && execute_script "software.sh"
+sleep 1s
+[[ "$virt" == "Y" ]] && execute_script "virt.sh"
 sleep 1s
 [[ "$thunar" == "Y" ]] && execute_script "thunar.sh"
 sleep 1s
