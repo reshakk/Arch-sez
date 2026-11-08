@@ -36,4 +36,6 @@ for RPG in "${virt[@]}"; do
 	install_package_pacman "$RPG" 2>&1 | tee -a "$LOG"
 done
 
+sudo systemctl enable libvirtd.service
 
+sudo gpasswd -a $USER libvirt
